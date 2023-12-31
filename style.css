@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: aquamarine;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+}
+
+/* .container .drop-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 75px;
+    background-color: #cd8484;
+    width: 800px;
+} */
+
+.drop-box {
+    border: 2px solid;
+    border-radius: 10px;
+    width: 850px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: clamp(300px ,80vw ,900px);
+}
+
+.drop-box button {
+    font-size: 1.1rem;
+    padding: 7px;
+    border-radius: 7px;
+    border: 1px solid blueviolet;
+    outline: none;
+    cursor: pointer;
+    transition: .25s;
+    flex-shrink: 1;
+}
+
+.drop-box button:hover {
+    scale: 1.1;
+    background-color: blueviolet;
+    color: #fff;
+}
+
+.drop-box button:active {
+    scale: 0.9;
+}
+
+.editor {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.editor label {
+    background-color: yellowgreen;
+    padding: 10px;
+    font-size: 25px;
+    border-radius: 10px;
+}
+
+.drag-box {
+    position: absolute;
+    top: 12.5vh;
+    left: -220px; 
+    height: 75vh;
+    width: 200px;
+    background-color: yellowgreen;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    /* gap: 200px; */
+    /* transition: all .25s;
+    transition: height .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateY(0px); */
+}
+
+.shape {
+    transition: .25s;
+}
+
+.shape:nth-child(1) {
+    background-color: red;
+    width: 75px;
+    height: 75px;
+    cursor: move;
+}
+
+.shape:nth-child(2) {
+    background-color: red;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    cursor: move;
+}
+
+.shape:nth-child(3) {
+    background-color: red;
+    width: 75px;
+    height: 75px;
+    clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+    cursor: move;
+}
+
+.shape:nth-child(4) {
+    background-color: red;
+    width: 100px;
+    height: 50px;
+    cursor: move;
+}
+
+.shape:nth-child(5) {
+    background-color: red;
+    width: 100px;
+    height: 100px;
+    clip-path: polygon(0% 40%, 25% 0%, 75% 0%, 100% 40%, 75% 80%, 25% 80%);
+    cursor: move;
+}
