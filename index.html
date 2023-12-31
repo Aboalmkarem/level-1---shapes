@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>shapes drag and drop</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-            <div class="drop-box">
-                <button>أظهر الأشكال الهندسية</button>
-            </div>
-            <div class="editor">
-                <input type="range" id="rng">
-                <label for="rng">Size: 50</label>
-            </div>
+        <div class="drop-box">
+            <button id="btn">أظهر الأشكال الهندسية</button>
+        </div>
+        <div class="editor">
+            <input type="range" id="rng" min="5" max="200">
+            <label for="rng">Size: 50</label>
+        </div>
         <div class="drag-box">
             <div class="shape"></div>
             <div class="shape"></div>
@@ -23,5 +23,6 @@
             <div class="shape"></div>
         </div>
     </div>
+    <script src="main.js"></script>
 </body>
 </html>
