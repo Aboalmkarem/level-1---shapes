@@ -10,8 +10,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: row-reverse;
+}
+
+.drop-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     gap: 50px;
+    flex: 3 2 auto;
 }
 
 .drop-box {
@@ -85,6 +93,7 @@
 
 .drag-box {
     position: absolute;
+    flex: 1 1 100px;
     top: 12.5vh;
     left: -20px; 
     height: 75vh;
@@ -101,14 +110,23 @@
 }
 
 .shape {
-    transition: .25s;
+    position: absolute;
+    transition: background .25s;
+    border: 1px solid#fff;
+    filter: drop-shadow(2px 2px 40px #fff);
+    z-index: 10;
+}
+
+.shape.active {
+    cursor: move;
+    user-select: none;
 }
 
 .shape:nth-child(1) {
     background-color: red;
     width: 75px;
     height: 75px;
-    cursor: move;
+    top: 15%;
 }
 
 .shape:nth-child(2) {
@@ -116,7 +134,7 @@
     width: 75px;
     height: 75px;
     border-radius: 50%;
-    cursor: move;
+    top: 30%;
 }
 
 .shape:nth-child(3) {
@@ -124,14 +142,14 @@
     width: 75px;
     height: 75px;
     clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
-    cursor: move;
+    top: 44%;
 }
 
 .shape:nth-child(4) {
     background-color: red;
     width: 100px;
     height: 50px;
-    cursor: move;
+    top: 62%;
 }
 
 .shape:nth-child(5) {
@@ -139,5 +157,5 @@
     width: 100px;
     height: 100px;
     clip-path: polygon(0% 40%, 25% 0%, 75% 0%, 100% 40%, 75% 80%, 25% 80%);
-    cursor: move;
+    top: 76%;
 }
