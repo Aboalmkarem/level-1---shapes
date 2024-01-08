@@ -11,22 +11,23 @@ body {
 .container {
     height: 100vh;
     width: 100vw;
+    padding-bottom: 75px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row-reverse;
+    gap: 20rem;
 }
 
 .drop-form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 50px;
-    flex: 3 2 auto;
+    position: relative;
 }
 
 .drop-box {
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     border: 2px solid #fff;
     border-radius: 10px;
     width: 850px;
@@ -36,7 +37,13 @@ body {
     align-items: center;
     padding: 20px;
     width: clamp(250px ,80vw ,850px);
-    transition: margin .35s;
+    transition: left .35s;
+}
+
+.drop-box p {
+    display: none;
+    font-size: 2rem;
+    color: #fff;
 }
 
 .drop-box button {
@@ -62,9 +69,11 @@ body {
 }
 
 .editor {
-    display: none;
+    display: flex;
+    align-self: flex-end;
     justify-content: center;
     align-items: center;
+    flex: 3 2 350px;
     flex-wrap: wrap;
     gap: 50px;
 }
@@ -99,7 +108,7 @@ body {
 
 .drag-box {
     position: absolute;
-    flex: 1 1 100px;
+    flex: 1 1 200px;
     top: 12.5vh;
     left: -20px; 
     height: 75vh;
@@ -132,7 +141,7 @@ body {
     background-color: brown;
     width: 100px;
     height: 100px;
-    top: 15%;
+    top: 13%;
 }
 
 .shape:nth-child(2) {
@@ -140,7 +149,7 @@ body {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    top: 30%;
+    top: 28%;
 }
 
 .shape:nth-child(3) {
@@ -148,14 +157,14 @@ body {
     width: 100px;
     height: 100px;
     clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
-    top: 44%;
+    top: 42%;
 }
 
 .shape:nth-child(4) {
     background-color: brown;
     width: 100px;
     height: 50px;
-    top: 62%;
+    top: 60%;
 }
 
 .shape:nth-child(5) {
@@ -163,5 +172,33 @@ body {
     width: 100px;
     height: 100px;
     clip-path: polygon(0% 40%, 25% 0%, 75% 0%, 100% 40%, 75% 80%, 25% 80%);
-    top: 76%;
+    top: 73%;
+}
+
+@media (max-width:1351px) {
+    .container {
+        padding-bottom: 50px;
+        gap: 15rem;
+    }
+    .editor {
+        gap: 15px;
+    }
+}
+
+@media (max-width:823px) {
+    .container {
+        gap: 10rem;
+    }
+}
+
+@media (max-width:657px) {
+    .container {
+        gap: 5rem;
+    }
+}
+
+@media (max-width:498px) {
+    .container {
+        gap: 2rem;
+    }
 }

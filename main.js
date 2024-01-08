@@ -5,13 +5,16 @@ let editor = document.querySelector('.editor');
 let shapes = document.querySelectorAll('.shape');
 let range = document.getElementById('rng');
 let label = document.getElementById('label');
+let Dtext = document.getElementById('Dtext');
 
 let selectedShape = null;
 let shapeStyle = null;
+let getStyle = null;
+let isInDrop = false;
 
 btn.addEventListener('click', () => {
     dragBox.style.width = "100px";
-    dropBox.style.margin = '0 0 0 75px'
+    dropBox.style.left = '55%'
     editor.style.display = 'flex';
     btn.style.display = 'none';
     setTimeout(() => {
@@ -21,12 +24,17 @@ btn.addEventListener('click', () => {
 
 for(let i = 0; i < shapes.length; i++) {
 
+    
+
     function onDrag({movementX, movementY}) {
 
-        let getStyle = window.getComputedStyle(shapes[i]);
-        let left = parseInt(getStyle.left);
+        getStyle = window.getComputedStyle(shapes[i]);
         let top = parseInt(getStyle.top);
-        
+        // let right = parseInt(getStyle.right);
+        // let bottom = parseInt(getStyle.bottom);
+        let left = parseInt(getStyle.left);
+        shapeInDrop(shapes[i]);
+        console.log(left, top);
         shapes[i].style.left = `${left + movementX}px`;
         shapes[i].style.top = `${top + movementY}px`;
     }
@@ -47,16 +55,39 @@ for(let i = 0; i < shapes.length; i++) {
     }
 
     function shapeInDrop(shape) {
-        shape.style.background = 'green'
+        let dropboxStyle = window.getComputedStyle(dropBox);
+        let top = parseInt(dropboxStyle.top)-395;
+        let right = parseInt(dropboxStyle.right)+1400;
+        let bottom = parseInt(dropboxStyle.bottom);
+        let left = parseInt(dropboxStyle.left)-518; //197
+
+        console.log(left)
+        if (left < parseInt(getStyle.left) && parseInt(getStyle.left) < (left+860) && top < parseInt(getStyle.top) && parseInt(getStyle.top) < top+600) {
+            shape.style.background = '#fff'
+            isInDrop = true;
+        } else {
+            shape.style.background = 'rgba(165, 42, 42, 0.806)'
+            isInDrop = false;
+        }
     }
-    let dropboxStyle = window.getComputedStyle(dropBox);
-    console.log(dropboxStyle)
+
+    function ifInDrop(shape) {
+        if (isInDrop) {
+            shape.style.background = '#fff'
+        } else {
+            shape.style.background = 'brown'
+        }
+    }
     
     
     shapes[i].addEventListener('mousedown', () => {
         shapes[i].classList.add("active");
+        dropBox.style.background = 'rgba(240, 255, 255, 0.403)';
+        Dtext.style.display = 'block'
         shapeStyle = window.getComputedStyle(shapes[i])
-        shapes[i].style.background = 'rgba(165, 42, 42, 0.806)'
+        if (!isInDrop) {
+            shapes[i].style.background = 'rgba(165, 42, 42, 0.806)'
+        }
         range.value = parseInt(shapeStyle.width);
         activeShape(shapes[i])
         label.innerText = `Size: ${range.value}`
@@ -65,7 +96,11 @@ for(let i = 0; i < shapes.length; i++) {
 
     document.addEventListener('mouseup', () => {
         shapes[i].classList.remove("active");
-        shapes[i].style.background = 'brown'
+        dropBox.style.background = 'none'
+        Dtext.style.display = 'none'
+        if (!isInDrop) {
+            shapes[i].style.background = 'brown'
+        }
         shapes[i].removeEventListener('mousemove', onDrag);
     })
 }
